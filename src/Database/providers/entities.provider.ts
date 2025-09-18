@@ -7,6 +7,5 @@ const createRepositoryProvider = (entity: any, token: string) => ({
 });
 
 export const EntityProviders = [
-
-  createRepositoryProvider(require('../Entities/teste.entity').Teste, 'TESTE_REPOSITORY'),
+  //createRepositoryProvider(require('../Entities/teste.entity').Teste, 'TESTE_REPOSITORY'),
 ];
