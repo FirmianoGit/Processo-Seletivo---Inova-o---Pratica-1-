@@ -1,23 +1,21 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Reserva } from "./reserva.entity";
 
 @Entity('Sala')
 export class Sala {
-  @PrimaryGeneratedColumn({type: 'int', name: 'id'})
-  Id: number;
+    @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
+    Id: number;
 
-  @PrimaryColumn()
-  @Column({ type: 'varchar', length: 100 })
-  Nome: string;
+    @PrimaryColumn()
+    @Column({ type: 'varchar', length: 100 })
+    Nome: string;
 
-  @Column({ type: 'date', length: 100 })
-  Comeco: Date
+    @Column({ type: 'int' })
+    Capacidade: number;
 
-  @Column({ type: 'date', length: 100 })
-  Termino: Date
+    @Column({ type: 'varchar', length: 255 })
+    Descricao: string;
 
-  @Column({ type: 'varchar', length: 100 })
-  Email: number;
-
-  @Column({type: 'varchar', length: 255})
-  Descricao: string;
+    @ManyToOne(() => Reserva, (reserva) => reserva.UserId)
+    Reserva: Reserva[];
 }
