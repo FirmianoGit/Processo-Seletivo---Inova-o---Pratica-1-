@@ -10,13 +10,13 @@ export class User {
     Nome: string;
 
     @Column({ type: 'varchar', length: 100 })
-    Senha: number;
+    Senha: string;
 
     @Column({ type: 'boolean' })
     IsAdmin: boolean;
 
     @Column({ type: 'varchar', length: 100 })
-    Email: number;
+    Email: string;
 
     @ManyToOne(() => Reserva, (reserva) => reserva.UserId)
     Reserva: Reserva[];

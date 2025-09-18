@@ -1,4 +1,5 @@
 import { DataSource } from 'typeorm';
+import { User } from '../Entities/user.entity';
 
 export const databaseProviders = [
   {
@@ -11,6 +12,7 @@ export const databaseProviders = [
 	      __dirname + '/../**/*.entity{.ts,.js}',
 		  //TEM QUE IMPORTAR AS ENTIDADES AQUI NAO ESQUECER, POR ALGUM MOTIVO O AUTO IMPORT NAO
 		  //ESTA DANDO CERTO CORRIGIR DEPOIS
+		  User
 	    ],
 	    synchronize: true,
 	  });
