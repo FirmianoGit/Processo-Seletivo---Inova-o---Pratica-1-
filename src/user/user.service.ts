@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from 'src/Database/Entities/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
+import { errorContext } from 'rxjs/internal/util/errorContext';
 
 @Injectable()
 export class UserService {
@@ -14,23 +15,22 @@ export class UserService {
   async create(createUsuarioDto: CreateUserDto): Promise<User> {
     try {
       // Criptografar a senha antes de salvar no banco
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(createUsuarioDto.Senha, salt);
+      const salt = await bcrypt.genSalt(5);
+      const hashedPassword = await bcrypt.hash(createUsuarioDto.Senha, 5);
       console.log(hashedPassword);
-
       // Substituir a senha pelo hash no DTO
       createUsuarioDto.Senha = hashedPassword;
 
-      // Criar o novo usuário
-      const usuario = this.usuariosRepository.create(createUsuarioDto);
 
+      // Criar o novo usuário
+      const usuario = this.usuariosRepository.create({ ...createUsuarioDto, Senha: hashedPassword });
       // Salvar no banco de dados
       return await this.usuariosRepository.save(usuario);
     } catch (error) {
       if (error.code === 'ER_DUP_ENTRY') {
         throw new ConflictException('Email ou nome de usuário já cadastrados.');
       }
-      throw new InternalServerErrorException('Erro ao criar usuário.');
+      throw new InternalServerErrorException(`Erro ao criar usuário. + ${error}`);
     }
   }
 
