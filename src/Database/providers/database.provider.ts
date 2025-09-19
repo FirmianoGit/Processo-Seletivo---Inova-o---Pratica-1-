@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
-import { Teste } from '../Entities/teste.entity';
+import { User } from '../Entities/user.entity';
+import { Sala } from '../Entities/sala.entity';
 
 export const databaseProviders = [
   {
@@ -10,7 +11,10 @@ export const databaseProviders = [
 	    database: 'database.sqlite',
 	    entities: [
 	      __dirname + '/../**/*.entity{.ts,.js}',
-		  Teste
+		  //TEM QUE IMPORTAR AS ENTIDADES AQUI NAO ESQUECER, POR ALGUM MOTIVO O AUTO IMPORT NAO
+		  //ESTA DANDO CERTO CORRIGIR DEPOIS
+		  User,
+		  Sala
 	    ],
 	    synchronize: true,
 	  });
