@@ -1,73 +1,80 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Sistema de Reserva de Salas
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Projeto desenvolvido em NestJS para gerenciamento de reservas de salas, usuários e autenticação JWT. O sistema permite o cadastro de usuários, autenticação, criação e atualização de salas, além de reservas, utilizando banco de dados SQLite.
 
-## Description
+## Funcionalidades
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Autenticação JWT**: Login seguro e rotas protegidas por guards.
+- **Cadastro de Usuários**: Criação, listagem e atualização de usuários.
+- **Gerenciamento de Salas**: CRUD de salas (criar, listar, atualizar, remover).
+- **Reservas**: Criação de reservas de salas por usuários.
+- **Validações**: Uso de DTOs para validação de dados de entrada.
 
-## Installation
+## Estrutura do Projeto
 
-```bash
-$ npm install
+```
+src/
+  app.controller.ts
+  app.module.ts
+  app.service.ts
+  main.ts
+  auth/                # Módulo de autenticação (JWT, guards, strategies)
+  Common/              # Modelos, decorators e utilitários
+  Database/            # Módulo de banco de dados, entidades e providers
+  rooms/               # Módulo de salas (CRUD)
+  user/                # Módulo de usuários (CRUD)
+test/                  # Testes e2e
+database.sqlite        # Banco de dados SQLite
 ```
 
-## Running the app
+## Instalação
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Test
+## Executando a Aplicação
 
 ```bash
-# unit tests
-$ npm run test
+# Desenvolvimento
+npm run start
 
-# e2e tests
-$ npm run test:e2e
+# Modo watch
+npm run start:dev
 
-# test coverage
-$ npm run test:cov
+# Produção
+npm run start:prod
 ```
 
-## Support
+## Testes
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+# Testes unitários
+npm run test
 
-## Stay in touch
+# Testes end-to-end
+npm run test:e2e
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# Cobertura de testes
+npm run test:cov
+```
 
-## License
+## Tecnologias Utilizadas
 
-Nest is [MIT licensed](LICENSE).
+- [NestJS](https://nestjs.com/) (TypeScript)
+- [SQLite](https://www.sqlite.org/index.html)
+- [JWT](https://jwt.io/)
+
+## Observações
+
+- O banco de dados utilizado é SQLite e já está incluído no repositório (`database.sqlite`).
+- As entidades e DTOs estão organizados em suas respectivas pastas.
+- O sistema utiliza guards e decorators customizados para controle de acesso.
+
+## Autor
+
+Desenvolvido para processo seletivo.
+
+---
+MIT License
